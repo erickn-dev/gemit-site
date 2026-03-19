@@ -1,0 +1,218 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gemit - AI-powered commit and branch CLI</title>
+    <meta name="author" content="Erick Novaes56" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="keywords" content="gemit, cli, git, commit, branch, ai, openai, gemini, anthropic, developer tools" />
+    <meta
+      name="description"
+      content="gemit is a modern CLI to suggest commit messages and branch names with AI using Google, OpenAI, or Anthropic."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="gemit - AI-powered commit and branch CLI" />
+    <meta
+      property="og:description"
+      content="Standardize commits and branches with AI in your terminal. Supports Google, OpenAI, and Anthropic."
+    />
+    <meta property="og:image" content="./logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="gemit - AI-powered commit and branch CLI" />
+    <meta
+      name="twitter:description"
+      content="Standardize commits and branches with AI in your terminal. Supports Google, OpenAI, and Anthropic."
+    />
+    <meta name="twitter:image" content="./logo.png" />
+    <link rel="icon" type="image/png" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            colors: {
+              border: "hsl(240 3.7% 15.9%)",
+              input: "hsl(240 3.7% 15.9%)",
+              ring: "hsl(240 4.9% 83.9%)",
+              background: "hsl(240 10% 3.9%)",
+              foreground: "hsl(0 0% 98%)",
+              muted: "hsl(240 3.7% 15.9%)",
+              "muted-foreground": "hsl(240 5% 64.9%)",
+              card: "hsl(240 10% 3.9%)",
+              "card-foreground": "hsl(0 0% 98%)",
+              primary: "hsl(0 0% 98%)",
+              "primary-foreground": "hsl(240 5.9% 10%)",
+              secondary: "hsl(240 3.7% 15.9%)",
+              "secondary-foreground": "hsl(0 0% 98%)",
+              accent: "hsl(240 3.7% 15.9%)",
+              "accent-foreground": "hsl(0 0% 98%)",
+            },
+            boxShadow: {
+              soft: "0 1px 2px rgba(0,0,0,.45)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "gemit",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows, Linux, macOS",
+        "description": "CLI to suggest commit messages and branch names with AI.",
+        "author": {
+          "@type": "Person",
+          "name": "Erick Novaes56"
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-background text-foreground font-sans antialiased">
+    <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+      <header class="mb-8 rounded-xl border border-border bg-card shadow-soft">
+        <div class="flex items-center justify-between px-5 py-4">
+          <div class="flex items-center gap-3">
+            <img src="./logo.png" alt="gemit logo" class="h-9 w-9 rounded-md border border-border object-cover" />
+            <div>
+              <p class="text-sm font-semibold">gemit</p>
+              <p class="text-xs text-muted-foreground">AI CLI for Git</p>
+            </div>
+          </div>
+          <a
+            href="#get-started"
+            class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90"
+          >
+            Get Started
+          </a>
+        </div>
+      </header>
+
+      <main class="space-y-6">
+        <section class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
+          <span class="inline-flex rounded-md border border-border bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
+            Node.js CLI
+          </span>
+          <h1 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            Consistent commits and branches with AI
+          </h1>
+          <p class="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
+            gemit generates Conventional Commit messages, suggests standardized branch names, and asks for confirmation before running git commands.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#installation" class="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Install</a>
+            <a href="#commands" class="rounded-md border border-border bg-background px-4 py-2 text-sm font-medium">View Commands</a>
+          </div>
+        </section>
+
+        <section class="grid gap-6 lg:grid-cols-2">
+          <article id="installation" class="rounded-xl border border-border bg-card p-6 shadow-soft">
+            <h2 class="text-lg font-semibold">Global installation</h2>
+            <p class="mt-2 text-sm text-muted-foreground">Works on Windows, Linux, and macOS via npm.</p>
+            <pre class="mt-4 overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>npm i -g gemit</code></pre>
+          </article>
+
+          <article id="get-started" class="rounded-xl border border-border bg-card p-6 shadow-soft">
+            <h2 class="text-lg font-semibold">Initial setup</h2>
+            <p class="mt-2 text-sm text-muted-foreground">Configure provider, model, and API key with a guided wizard.</p>
+            <pre class="mt-4 overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>gemit init
+gemit doctor</code></pre>
+          </article>
+        </section>
+
+        <section id="commands" class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
+          <h2 class="text-xl font-semibold">Core commands</h2>
+          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+            <div class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit</p>
+              <p class="mt-1 text-sm text-muted-foreground">Suggests a commit message and asks whether to commit.</p>
+            </div>
+            <div class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit commit</p>
+              <p class="mt-1 text-sm text-muted-foreground">Explicit commit suggestion flow.</p>
+            </div>
+            <div class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit branch "description"</p>
+              <p class="mt-1 text-sm text-muted-foreground">Suggests a branch name and creates it after confirmation.</p>
+            </div>
+            <div class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit doctor</p>
+              <p class="mt-1 text-sm text-muted-foreground">Validates provider, model, and API key configuration.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid gap-6 lg:grid-cols-2">
+          <article class="rounded-xl border border-border bg-card p-6 shadow-soft">
+            <h3 class="text-lg font-semibold">.env example</h3>
+            <pre class="mt-4 overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-xs"><code>LLM_PROVIDER="google"
+LLM_MODEL="gemini-2.5-flash"
+
+GOOGLE_API_KEY=""
+GEMINI_API_KEY=""
+OPENAI_API_KEY=""
+ANTHROPIC_API_KEY=""</code></pre>
+          </article>
+
+          <article class="rounded-xl border border-border bg-card p-6 shadow-soft">
+            <h3 class="text-lg font-semibold">Recommended workflow</h3>
+            <ol class="mt-3 space-y-2 text-sm text-muted-foreground">
+              <li>1. Install with <code class="font-mono">npm i -g gemit</code>.</li>
+              <li>2. Run <code class="font-mono">gemit init</code> in your project.</li>
+              <li>3. Create a branch with <code class="font-mono">gemit branch "description"</code>.</li>
+              <li>4. Generate commits with <code class="font-mono">gemit</code>.</li>
+              <li>5. If setup fails, run <code class="font-mono">gemit doctor</code>.</li>
+            </ol>
+          </article>
+        </section>
+
+        <section class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
+          <div class="grid items-center gap-6 md:grid-cols-[1fr_auto]">
+            <div>
+              <h3 class="text-2xl font-semibold tracking-tight">Join the community</h3>
+              <p class="mt-2 text-sm text-muted-foreground sm:text-base">
+                Join the Discord community to share improvements, ask questions, and follow gemit updates.
+              </p>
+              <a
+                href="https://discord.gg/CJqy69MGD2"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-5 inline-flex items-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition hover:opacity-90"
+              >
+                Join Discord
+              </a>
+            </div>
+            <div class="justify-self-start md:justify-self-end">
+              <div class="rounded-xl border border-border bg-muted p-3">
+                <img
+                  src="./community.png"
+                  alt="Community logo"
+                  class="h-20 w-20 rounded-lg object-cover sm:h-24 sm:w-24"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="mt-8 rounded-xl border border-border bg-card px-5 py-4 text-sm text-muted-foreground shadow-soft">
+        <p>gemit - AI-powered CLI for commits and branches</p>
+        <p class="mt-1">Credits: Erick Novaes56</p>
+      </footer>
+    </div>
+  </body>
+</html>
