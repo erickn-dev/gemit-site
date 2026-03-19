@@ -9,25 +9,26 @@
     <meta name="keywords" content="gemit, cli, git, commit, branch, ai, openai, gemini, anthropic, developer tools" />
     <meta
       name="description"
-      content="gemit is a modern CLI to suggest commit messages and branch names with AI using Google, OpenAI, or Anthropic."
+      content="gemit is a CLI to speed up your Git workflow with AI: commits, branch names, PR text, branch summaries, and changelogs."
     />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="gemit - AI-powered commit and branch CLI" />
     <meta
       property="og:description"
-      content="Standardize commits and branches with AI in your terminal. Supports Google, OpenAI, and Anthropic."
+      content="Suggest commits, branch names, and PR text with AI in a productivity-focused CLI."
     />
     <meta property="og:image" content="./logo.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="gemit - AI-powered commit and branch CLI" />
     <meta
       name="twitter:description"
-      content="Standardize commits and branches with AI in your terminal. Supports Google, OpenAI, and Anthropic."
+      content="Accelerate your Git workflow with AI: commit, branch, PR, log, and changelog."
     />
     <meta name="twitter:image" content="./logo.png" />
     <link rel="icon" type="image/png" href="./logo.png" />
     <link rel="apple-touch-icon" href="./logo.png" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -74,7 +75,7 @@
         "name": "gemit",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Windows, Linux, macOS",
-        "description": "CLI to suggest commit messages and branch names with AI.",
+        "description": "CLI to speed up Git workflows with AI.",
         "author": {
           "@type": "Person",
           "name": "Erick Novaes56"
@@ -94,7 +95,7 @@
             </div>
           </div>
           <a
-            href="#get-started"
+            href="#installation"
             class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90"
           >
             Get Started
@@ -104,12 +105,12 @@
 
       <main class="space-y-6">
         <section class="rounded-xl border border-amber-500/40 bg-amber-500/10 p-6 shadow-soft sm:p-8">
-          <h2 class="text-lg font-semibold text-amber-200">Atualizacao temporaria</h2>
+          <h2 class="text-lg font-semibold text-amber-200">Temporary update</h2>
           <p class="mt-2 text-sm leading-6 text-amber-100/90 sm:text-base">
-            Por regra do npm, o pacote esta disponivel por algumas horas em <code class="font-mono">@ericknovaes56/gemit-cli</code>.
+            Due to npm naming rules, the package is temporarily available as <code class="font-mono">@ericknovaes56/gemit-cli</code>.
           </p>
           <p class="mt-2 text-sm leading-6 text-amber-100/90 sm:text-base">
-            Instalacao: <code class="font-mono">npm i -g @ericknovaes56/gemit-cli</code> (comando continua <code class="font-mono">gemit</code>). O nome <code class="font-mono">gemit-cli</code> volta amanha.
+            Installation: <code class="font-mono">npm install -g @ericknovaes56/gemit-cli</code>.
           </p>
         </section>
 
@@ -118,10 +119,10 @@
             Node.js CLI
           </span>
           <h1 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Consistent commits and branches with AI
+            gemit is a CLI to speed up your Git workflow with AI
           </h1>
           <p class="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
-            gemit generates Conventional Commit messages, suggests standardized branch names, and asks for confirmation before running git commands.
+            It suggests commits, branch names, PR text, branch summaries, and changelogs with confirmation before running Git commands.
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
             <a href="#installation" class="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Install</a>
@@ -131,39 +132,130 @@
 
         <section class="grid gap-6 lg:grid-cols-2">
           <article id="installation" class="rounded-xl border border-border bg-card p-6 shadow-soft">
-            <h2 class="text-lg font-semibold">Global installation</h2>
-            <p class="mt-2 text-sm text-muted-foreground">Works on Windows, Linux, and macOS via npm.</p>
-            <pre class="mt-4 overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>npm i -g @ericknovaes56/gemit-cli</code></pre>
+            <h2 class="text-lg font-semibold">Installation</h2>
+            <p class="mt-2 text-sm text-muted-foreground">Global npm install on Windows, Linux, and macOS.</p>
+            <p class="mt-1 text-xs text-muted-foreground">
+              npm sync: v<span id="npm-version">...</span> • updated <span id="npm-updated">...</span>
+            </p>
+            <pre class="mt-4 overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>npm install -g @ericknovaes56/gemit-cli</code></pre>
           </article>
 
-          <article id="get-started" class="rounded-xl border border-border bg-card p-6 shadow-soft">
-            <h2 class="text-lg font-semibold">Initial setup</h2>
-            <p class="mt-2 text-sm text-muted-foreground">Configure provider, model, and API key with a guided wizard.</p>
+          <article class="rounded-xl border border-border bg-card p-6 shadow-soft">
+            <h2 class="text-lg font-semibold">Prerequisites</h2>
+            <ol class="mt-2 space-y-2 text-sm text-muted-foreground">
+              <li>1. Be inside a Git repository.</li>
+              <li>2. Configure provider/model/API key with <code class="font-mono">gemit init</code>.</li>
+            </ol>
             <pre class="mt-4 overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>gemit init
 gemit doctor</code></pre>
           </article>
         </section>
 
-        <section id="commands" class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
-          <h2 class="text-xl font-semibold">Core commands</h2>
-          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+        <section class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
+          <h2 class="text-xl font-semibold">Configuration (init) and variables</h2>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
             <div class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit</p>
-              <p class="mt-1 text-sm text-muted-foreground">Suggests a commit message and asks whether to commit.</p>
+              <p class="font-medium">Load order</p>
+              <ol class="mt-2 space-y-2 text-sm text-muted-foreground">
+                <li>1. <code class="font-mono">.env</code> global.</li>
+              </ol>
+              <p class="mt-3 text-sm text-muted-foreground">Global path on Windows: <code class="font-mono">%APPDATA%\gemit\.env</code></p>
             </div>
             <div class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit commit</p>
-              <p class="mt-1 text-sm text-muted-foreground">Explicit commit suggestion flow.</p>
-            </div>
-            <div class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit branch "description"</p>
-              <p class="mt-1 text-sm text-muted-foreground">Suggests a branch name and creates it after confirmation.</p>
-            </div>
-            <div class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit doctor</p>
-              <p class="mt-1 text-sm text-muted-foreground">Validates provider, model, and API key configuration.</p>
+              <p class="font-medium">Supported variables</p>
+              <ul class="mt-2 space-y-2 text-sm text-muted-foreground">
+                <li>- <code class="font-mono">LLM_PROVIDER</code> (google, openai, anthropic)</li>
+                <li>- <code class="font-mono">LLM_MODEL</code></li>
+                <li>- <code class="font-mono">GOOGLE_API_KEY</code> (or <code class="font-mono">GEMINI_API_KEY</code>)</li>
+                <li>- <code class="font-mono">OPENAI_API_KEY</code></li>
+                <li>- <code class="font-mono">ANTHROPIC_API_KEY</code></li>
+              </ul>
             </div>
           </div>
+          <div class="mt-4 rounded-lg border border-border bg-background p-4">
+            <p class="font-medium">init defaults</p>
+            <ul class="mt-2 space-y-2 text-sm text-muted-foreground sm:grid sm:grid-cols-3 sm:gap-3 sm:space-y-0">
+              <li>- <code class="font-mono">google</code> -> <code class="font-mono">gemini-2.5-flash</code></li>
+              <li>- <code class="font-mono">openai</code> -> <code class="font-mono">gpt-4o-mini</code></li>
+              <li>- <code class="font-mono">anthropic</code> -> <code class="font-mono">claude-3-5-sonnet-latest</code></li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="commands" class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
+          <h2 class="text-xl font-semibold">CLI commands</h2>
+
+          <h3 class="mt-5 text-sm font-semibold uppercase tracking-wider text-muted-foreground">Global options</h3>
+          <div class="mt-3 grid gap-3 sm:grid-cols-3">
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">-v, --version</p>
+              <p class="mt-1 text-sm text-muted-foreground">Show version.</p>
+            </article>
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">-h, --help</p>
+              <p class="mt-1 text-sm text-muted-foreground">General help.</p>
+            </article>
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">help [command]</p>
+              <p class="mt-1 text-sm text-muted-foreground">Help for a specific command.</p>
+            </article>
+          </div>
+
+          <h3 class="mt-6 text-sm font-semibold uppercase tracking-wider text-muted-foreground">Main flows</h3>
+          <div class="mt-3 grid gap-3 sm:grid-cols-2">
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit</p>
+              <p class="mt-1 text-sm text-muted-foreground">Shortcut to the commit flow using current staged changes.</p>
+            </article>
+
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit commit [--all] [--check]</p>
+              <p class="mt-1 text-sm text-muted-foreground">Flow: stage -> summary -> AI suggestion -> optional edit -> confirmation -> <code class="font-mono">git commit -m</code>. Then it asks whether to push.</p>
+              <div class="mt-3 space-y-2 text-sm text-muted-foreground">
+                <p>- <code class="font-mono">--all</code>: runs <code class="font-mono">git add .</code> first.</p>
+                <p>- <code class="font-mono">--check</code>: runs <code class="font-mono">npm run lint --if-present</code> and <code class="font-mono">npm run test --if-present</code>.</p>
+              </div>
+            </article>
+
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit branch &lt;description...&gt;</p>
+              <p class="mt-1 text-sm text-muted-foreground">Generates a branch in <code class="font-mono">&lt;type&gt;/&lt;kebab-case&gt;</code> (feat, fix, chore, docs, refactor, test) and asks whether to create it with <code class="font-mono">git checkout -b</code>.</p>
+            </article>
+
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit pr</p>
+              <p class="mt-1 text-sm text-muted-foreground">Generates a markdown PR title and description from branch commits.</p>
+            </article>
+
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit log</p>
+              <p class="mt-1 text-sm text-muted-foreground">Summarizes what was done in the current branch.</p>
+            </article>
+
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit changelog [name]</p>
+              <p class="mt-1 text-sm text-muted-foreground">Generates a file in <code class="font-mono">changelogs/&lt;name&gt;-YYYY-MM-DD.md</code>.</p>
+            </article>
+
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit init</p>
+              <p class="mt-1 text-sm text-muted-foreground">Configures provider/model/key in the global .env.</p>
+            </article>
+
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit doctor</p>
+              <p class="mt-1 text-sm text-muted-foreground">Validates current config and reports missing values.</p>
+            </article>
+          </div>
+
+          <article class="mt-3 rounded-lg border border-border bg-background p-4">
+            <p class="font-mono text-sm">gemit add [--all] [--check]</p>
+            <p class="mt-1 text-sm text-muted-foreground">Stages changes and enters the same commit suggestion flow.</p>
+            <div class="mt-3 space-y-2 text-sm text-muted-foreground">
+              <p>- <code class="font-mono">--all</code>: runs <code class="font-mono">git add .</code>.</p>
+              <p>- <code class="font-mono">--check</code>: runs lint and test with <code class="font-mono">--if-present</code>.</p>
+            </div>
+          </article>
         </section>
 
         <section class="grid gap-6 lg:grid-cols-2">
@@ -179,13 +271,11 @@ ANTHROPIC_API_KEY=""</code></pre>
           </article>
 
           <article class="rounded-xl border border-border bg-card p-6 shadow-soft">
-            <h3 class="text-lg font-semibold">Recommended workflow</h3>
+            <h3 class="text-lg font-semibold">Project scripts (package.json)</h3>
             <ol class="mt-3 space-y-2 text-sm text-muted-foreground">
-              <li>1. Install with <code class="font-mono">npm i -g @ericknovaes56/gemit-cli</code>.</li>
-              <li>2. Run <code class="font-mono">gemit init</code> in your project.</li>
-              <li>3. Create a branch with <code class="font-mono">gemit branch "description"</code>.</li>
-              <li>4. Generate commits with <code class="font-mono">gemit</code>.</li>
-              <li>5. If setup fails, run <code class="font-mono">gemit doctor</code>.</li>
+              <li>1. <code class="font-mono">gemit commit --check</code> runs <code class="font-mono">npm run lint --if-present</code>.</li>
+              <li>2. <code class="font-mono">gemit commit --check</code> runs <code class="font-mono">npm run test --if-present</code>.</li>
+              <li>3. If scripts do not exist, npm skips them safely because of <code class="font-mono">--if-present</code>.</li>
             </ol>
           </article>
         </section>
@@ -222,7 +312,58 @@ ANTHROPIC_API_KEY=""</code></pre>
       <footer class="mt-8 rounded-xl border border-border bg-card px-5 py-4 text-sm text-muted-foreground shadow-soft">
         <p>gemit - AI-powered CLI for commits and branches</p>
         <p class="mt-1">Credits: Erick Novaes56</p>
+        <p class="mt-1">
+          Instagram:
+          <a href="http://instagram.com/ericknovaes56" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-90">instagram.com/ericknovaes56</a>
+        </p>
       </footer>
     </div>
+    <script>
+      (function syncNpmMetadata() {
+        var packageName = "@ericknovaes56/gemit-cli";
+        var endpoint = "https://registry.npmjs.org/" + encodeURIComponent(packageName);
+        var versionEl = document.getElementById("npm-version");
+        var updatedEl = document.getElementById("npm-updated");
+
+        fetch(endpoint)
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("npm registry request failed");
+            }
+            return response.json();
+          })
+          .then(function (data) {
+            var latest = data && data["dist-tags"] && data["dist-tags"].latest;
+            var modifiedAt = data && data.time && data.time.modified;
+            var publishedAt = latest && data && data.time ? data.time[latest] : null;
+            var lastUpdate = publishedAt || modifiedAt;
+
+            if (versionEl && latest) {
+              versionEl.textContent = latest;
+            }
+
+            if (updatedEl && lastUpdate) {
+              var date = new Date(lastUpdate);
+              if (!isNaN(date.getTime())) {
+                updatedEl.textContent = date.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "2-digit",
+                });
+              }
+            }
+          })
+          .catch(function () {
+            if (versionEl) {
+              versionEl.textContent = "unavailable";
+            }
+            if (updatedEl) {
+              updatedEl.textContent = "unavailable";
+            }
+          });
+      })();
+    </script>
   </body>
 </html>
+
+
