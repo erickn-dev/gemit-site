@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gemit - npm dashboard</title>
+    <meta name="description" content="Dashboard com dados publicos do npm para o pacote gemit-cli." />
+    <link rel="icon" type="image/png" href="../logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            colors: {
+              border: "hsl(240 3.7% 15.9%)",
+              input: "hsl(240 3.7% 15.9%)",
+              ring: "hsl(240 4.9% 83.9%)",
+              background: "hsl(240 10% 3.9%)",
+              foreground: "hsl(0 0% 98%)",
+              muted: "hsl(240 3.7% 15.9%)",
+              "muted-foreground": "hsl(240 5% 64.9%)",
+              card: "hsl(240 10% 3.9%)",
+              "card-foreground": "hsl(0 0% 98%)",
+              primary: "hsl(0 0% 98%)",
+              "primary-foreground": "hsl(240 5.9% 10%)",
+              secondary: "hsl(240 3.7% 15.9%)",
+              "secondary-foreground": "hsl(0 0% 98%)",
+              accent: "hsl(240 3.7% 15.9%)",
+              "accent-foreground": "hsl(0 0% 98%)",
+            },
+            boxShadow: {
+              soft: "0 1px 2px rgba(0,0,0,.45)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-background text-foreground font-sans antialiased">
+    <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+      <header class="mb-8 rounded-xl border border-border bg-card shadow-soft">
+        <div class="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
+          <a href="../index.html" class="flex items-center gap-3">
+            <img src="../logo.png" alt="gemit logo" class="h-9 w-9 rounded-md border border-border object-cover" />
+            <div>
+              <p class="text-sm font-semibold">gemit</p>
+              <p class="text-xs text-muted-foreground">NPM Dashboard</p>
+            </div>
+          </a>
+          <a
+            href="../index.html"
+            class="inline-flex items-center rounded-md border border-border bg-background px-4 py-2 text-sm font-medium"
+          >
+            Back to Home
+          </a>
+        </div>
+      </header>
+
+      <main class="space-y-6">
+        <section class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
+          <span class="inline-flex rounded-md border border-border bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
+            gemit-cli no npm
+          </span>
+          <h1 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">Dashboard oficial do gemit</h1>
+          <p class="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
+            Acompanhe downloads, metadados, maintainers, versoes e tendencia dos ultimos 30 dias do pacote gemit-cli usando apenas endpoints publicos.
+          </p>
+          <p id="status" class="mt-4 text-xs text-muted-foreground">Carregando dados do gemit-cli...</p>
+        </section>
+
+        <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <article class="rounded-xl border border-border bg-card p-5 shadow-soft">
+            <p class="text-xs uppercase tracking-wider text-muted-foreground">Downloads (dia)</p>
+            <p id="downloads-day" class="mt-2 font-mono text-2xl font-semibold">-</p>
+          </article>
+          <article class="rounded-xl border border-border bg-card p-5 shadow-soft">
+            <p class="text-xs uppercase tracking-wider text-muted-foreground">Downloads (semana)</p>
+            <p id="downloads-week" class="mt-2 font-mono text-2xl font-semibold">-</p>
+          </article>
+          <article class="rounded-xl border border-border bg-card p-5 shadow-soft">
+            <p class="text-xs uppercase tracking-wider text-muted-foreground">Downloads (mês)</p>
+            <p id="downloads-month" class="mt-2 font-mono text-2xl font-semibold">-</p>
+          </article>
+          <article class="rounded-xl border border-border bg-card p-5 shadow-soft">
+            <p class="text-xs uppercase tracking-wider text-muted-foreground">Maintainers</p>
+            <p id="maintainers-count" class="mt-2 font-mono text-2xl font-semibold">-</p>
+          </article>
+        </section>
+
+        <section class="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+          <article class="rounded-xl border border-border bg-card p-6 shadow-soft">
+            <h2 class="text-lg font-semibold">Tendência de downloads (últimos 30 dias)</h2>
+            <p class="mt-2 text-sm text-muted-foreground">
+              Cada barra representa um dia. A barra mais alta é o maior volume dentro do período.
+            </p>
+            <div id="trend-chart" class="mt-5 flex h-48 items-end gap-1 overflow-hidden rounded-md border border-border bg-background p-3"></div>
+            <div class="mt-4 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
+              <p>Pico diário: <span id="peak-day" class="font-mono text-foreground">-</span></p>
+              <p>Média diária: <span id="avg-day" class="font-mono text-foreground">-</span></p>
+            </div>
+          </article>
+
+          <article class="rounded-xl border border-border bg-card p-6 shadow-soft">
+            <h2 class="text-lg font-semibold">Package info</h2>
+            <dl class="mt-4 space-y-3 text-sm">
+              <div class="rounded-lg border border-border bg-background p-3">
+                <dt class="text-xs uppercase tracking-wider text-muted-foreground">Nome</dt>
+                <dd id="pkg-name" class="mt-1 font-mono">-</dd>
+              </div>
+              <div class="rounded-lg border border-border bg-background p-3">
+                <dt class="text-xs uppercase tracking-wider text-muted-foreground">Versão latest</dt>
+                <dd id="pkg-version" class="mt-1 font-mono">-</dd>
+              </div>
+              <div class="rounded-lg border border-border bg-background p-3">
+                <dt class="text-xs uppercase tracking-wider text-muted-foreground">Licença</dt>
+                <dd id="pkg-license" class="mt-1 font-mono">-</dd>
+              </div>
+              <div class="rounded-lg border border-border bg-background p-3">
+                <dt class="text-xs uppercase tracking-wider text-muted-foreground">Versões publicadas</dt>
+                <dd id="pkg-versions-count" class="mt-1 font-mono">-</dd>
+              </div>
+              <div class="rounded-lg border border-border bg-background p-3">
+                <dt class="text-xs uppercase tracking-wider text-muted-foreground">Criado</dt>
+                <dd id="pkg-created" class="mt-1 font-mono">-</dd>
+              </div>
+              <div class="rounded-lg border border-border bg-background p-3">
+                <dt class="text-xs uppercase tracking-wider text-muted-foreground">Última modificação</dt>
+                <dd id="pkg-modified" class="mt-1 font-mono">-</dd>
+              </div>
+            </dl>
+          </article>
+        </section>
+
+        <section class="grid gap-6 lg:grid-cols-2">
+          <article class="rounded-xl border border-border bg-card p-6 shadow-soft">
+            <h2 class="text-lg font-semibold">Descrição e links</h2>
+            <p id="pkg-description" class="mt-3 text-sm text-muted-foreground">-</p>
+            <div class="mt-4 flex flex-wrap gap-3 text-sm">
+              <a id="pkg-homepage" href="#" target="_blank" rel="noopener noreferrer" class="rounded-md border border-border bg-background px-3 py-2">Homepage</a>
+              <a id="pkg-repo" href="#" target="_blank" rel="noopener noreferrer" class="rounded-md border border-border bg-background px-3 py-2">Repository</a>
+              <a id="pkg-npm" href="#" target="_blank" rel="noopener noreferrer" class="rounded-md border border-border bg-background px-3 py-2">npm page</a>
+            </div>
+          </article>
+
+          <article class="rounded-xl border border-border bg-card p-6 shadow-soft">
+            <h2 class="text-lg font-semibold">Quem usa o gemit</h2>
+            <p class="mt-3 text-sm text-muted-foreground">
+              A API publica do npm nao expoe lista de usuarios ou empresas que usam o gemit-cli.
+            </p>
+            <p class="mt-3 text-sm text-muted-foreground">
+              Como aproximacao publica, usamos downloads e total de maintainers para medir adocao e atividade do gemit.
+            </p>
+            <div class="mt-4 rounded-lg border border-border bg-background p-4 text-sm text-muted-foreground">
+              <p>Indicador publico disponivel: <span id="adoption-proxy" class="font-mono text-foreground">-</span></p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      (function npmDashboard() {
+        var formatNumber = function (value) {
+          if (typeof value !== "number" || isNaN(value)) return "-";
+          return value.toLocaleString("en-US");
+        };
+
+        var formatDate = function (iso) {
+          if (!iso) return "-";
+          var d = new Date(iso);
+          if (isNaN(d.getTime())) return "-";
+          return d.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+          });
+        };
+
+        var select = function (id) {
+          return document.getElementById(id);
+        };
+
+        var el = {
+          status: select("status"),
+          day: select("downloads-day"),
+          week: select("downloads-week"),
+          month: select("downloads-month"),
+          maintainers: select("maintainers-count"),
+          trend: select("trend-chart"),
+          peakDay: select("peak-day"),
+          avgDay: select("avg-day"),
+          name: select("pkg-name"),
+          version: select("pkg-version"),
+          license: select("pkg-license"),
+          versionsCount: select("pkg-versions-count"),
+          created: select("pkg-created"),
+          modified: select("pkg-modified"),
+          description: select("pkg-description"),
+          homepage: select("pkg-homepage"),
+          repo: select("pkg-repo"),
+          npm: select("pkg-npm"),
+          adoptionProxy: select("adoption-proxy"),
+        };
+
+        var setLink = function (anchor, url) {
+          if (!anchor) return;
+          if (!url) {
+            anchor.setAttribute("href", "#");
+            anchor.classList.add("pointer-events-none", "opacity-50");
+            return;
+          }
+          anchor.classList.remove("pointer-events-none", "opacity-50");
+          anchor.setAttribute("href", url);
+        };
+
+        var renderTrend = function (downloads) {
+          if (!el.trend) return;
+          el.trend.innerHTML = "";
+          if (!downloads || !downloads.length) return;
+
+          var max = downloads.reduce(function (acc, row) {
+            return Math.max(acc, row.downloads || 0);
+          }, 0);
+
+          downloads.forEach(function (row) {
+            var bar = document.createElement("div");
+            var raw = row.downloads || 0;
+            var ratio = max > 0 ? raw / max : 0;
+            var height = Math.max(6, Math.round(ratio * 100));
+            bar.className = "flex-1 rounded-sm bg-primary/80";
+            bar.style.height = height + "%";
+            bar.title = row.day + " - " + formatNumber(raw);
+            el.trend.appendChild(bar);
+          });
+        };
+
+        var loadPackage = function () {
+          var packageName = "gemit-cli";
+
+          if (el.status) el.status.textContent = "Buscando dados para " + packageName + "...";
+
+          var encoded = encodeURIComponent(packageName);
+          var registryUrl = "https://registry.npmjs.org/" + encoded;
+          var dayUrl = "https://api.npmjs.org/downloads/point/last-day/" + encoded;
+          var weekUrl = "https://api.npmjs.org/downloads/point/last-week/" + encoded;
+          var monthUrl = "https://api.npmjs.org/downloads/point/last-month/" + encoded;
+          var trendUrl = "https://api.npmjs.org/downloads/range/last-month/" + encoded;
+
+          Promise.all([
+            fetch(registryUrl).then(function (r) {
+              if (!r.ok) throw new Error("registry");
+              return r.json();
+            }),
+            fetch(dayUrl).then(function (r) {
+              if (!r.ok) throw new Error("day");
+              return r.json();
+            }),
+            fetch(weekUrl).then(function (r) {
+              if (!r.ok) throw new Error("week");
+              return r.json();
+            }),
+            fetch(monthUrl).then(function (r) {
+              if (!r.ok) throw new Error("month");
+              return r.json();
+            }),
+            fetch(trendUrl).then(function (r) {
+              if (!r.ok) throw new Error("trend");
+              return r.json();
+            }),
+          ])
+            .then(function (result) {
+              var registry = result[0];
+              var day = result[1];
+              var week = result[2];
+              var month = result[3];
+              var trend = result[4];
+
+              var latest = registry && registry["dist-tags"] ? registry["dist-tags"].latest : null;
+              var versions = registry && registry.versions ? Object.keys(registry.versions) : [];
+              var maintainers = registry && Array.isArray(registry.maintainers) ? registry.maintainers : [];
+              var dailyRows = trend && Array.isArray(trend.downloads) ? trend.downloads : [];
+              var peak = dailyRows.reduce(function (acc, row) {
+                if (!acc || (row.downloads || 0) > (acc.downloads || 0)) return row;
+                return acc;
+              }, null);
+              var avg = dailyRows.length
+                ? Math.round(
+                    dailyRows.reduce(function (sum, row) {
+                      return sum + (row.downloads || 0);
+                    }, 0) / dailyRows.length
+                  )
+                : 0;
+
+              el.day.textContent = formatNumber(day.downloads);
+              el.week.textContent = formatNumber(week.downloads);
+              el.month.textContent = formatNumber(month.downloads);
+              el.maintainers.textContent = formatNumber(maintainers.length);
+              el.peakDay.textContent = peak ? peak.day + " (" + formatNumber(peak.downloads) + ")" : "-";
+              el.avgDay.textContent = formatNumber(avg);
+              el.name.textContent = registry.name || packageName;
+              el.version.textContent = latest || "-";
+              el.license.textContent = registry.license || "-";
+              el.versionsCount.textContent = formatNumber(versions.length);
+              el.created.textContent = formatDate(registry && registry.time ? registry.time.created : null);
+              el.modified.textContent = formatDate(registry && registry.time ? registry.time.modified : null);
+              el.description.textContent = registry.description || "Sem descricao publica no registro.";
+              el.adoptionProxy.textContent = month.downloads
+                ? formatNumber(month.downloads) + " downloads/mes"
+                : "-";
+
+              var repoUrl = registry && registry.repository && registry.repository.url ? registry.repository.url : "";
+              if (repoUrl.indexOf("git+") === 0) repoUrl = repoUrl.replace("git+", "");
+              if (repoUrl.indexOf("git://") === 0) repoUrl = repoUrl.replace("git://", "https://");
+              if (repoUrl.slice(-4) === ".git") repoUrl = repoUrl.slice(0, -4);
+
+              setLink(el.homepage, registry.homepage || "");
+              setLink(el.repo, repoUrl);
+              setLink(el.npm, "https://www.npmjs.com/package/" + encoded);
+              renderTrend(dailyRows);
+
+              if (el.status) el.status.textContent = "Dados do gemit-cli atualizados com sucesso.";
+            })
+            .catch(function () {
+              var targets = [
+                el.day,
+                el.week,
+                el.month,
+                el.maintainers,
+                el.peakDay,
+                el.avgDay,
+                el.name,
+                el.version,
+                el.license,
+                el.versionsCount,
+                el.created,
+                el.modified,
+                el.description,
+                el.adoptionProxy,
+              ];
+              targets.forEach(function (node) {
+                if (node) node.textContent = "-";
+              });
+              if (el.trend) el.trend.innerHTML = "";
+              if (el.status) el.status.textContent = "Nao foi possivel carregar dados do gemit-cli.";
+              setLink(el.homepage, "");
+              setLink(el.repo, "");
+              setLink(el.npm, "");
+            });
+        };
+        loadPackage();
+      })();
+    </script>
+  </body>
+</html>
