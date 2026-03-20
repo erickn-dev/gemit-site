@@ -104,16 +104,6 @@
       </header>
 
       <main class="space-y-6">
-        <section class="rounded-xl border border-amber-500/40 bg-amber-500/10 p-6 shadow-soft sm:p-8">
-          <h2 class="text-lg font-semibold text-amber-200">Temporary update</h2>
-          <p class="mt-2 text-sm leading-6 text-amber-100/90 sm:text-base">
-            Due to npm naming rules, the package is temporarily available as <code class="font-mono">@ericknovaes56/gemit-cli</code>.
-          </p>
-          <p class="mt-2 text-sm leading-6 text-amber-100/90 sm:text-base">
-            Installation: <code class="font-mono">npm install -g @ericknovaes56/gemit-cli</code>.
-          </p>
-        </section>
-
         <section class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
           <span class="inline-flex rounded-md border border-border bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
             Node.js CLI
@@ -131,22 +121,22 @@
         </section>
 
         <section class="grid gap-6 lg:grid-cols-2">
-          <article id="installation" class="rounded-xl border border-border bg-card p-6 shadow-soft">
+          <article id="installation" class="min-w-0 rounded-xl border border-border bg-card p-6 shadow-soft">
             <h2 class="text-lg font-semibold">Installation</h2>
             <p class="mt-2 text-sm text-muted-foreground">Global npm install on Windows, Linux, and macOS.</p>
             <p class="mt-1 text-xs text-muted-foreground">
               npm sync: v<span id="npm-version">...</span> • updated <span id="npm-updated">...</span>
             </p>
-            <pre class="mt-4 overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>npm install -g @ericknovaes56/gemit-cli</code></pre>
+            <pre class="mt-4 w-full max-w-full overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>npm install -g gemit-cli</code></pre>
           </article>
 
-          <article class="rounded-xl border border-border bg-card p-6 shadow-soft">
+          <article class="min-w-0 rounded-xl border border-border bg-card p-6 shadow-soft">
             <h2 class="text-lg font-semibold">Prerequisites</h2>
             <ol class="mt-2 space-y-2 text-sm text-muted-foreground">
               <li>1. Be inside a Git repository.</li>
               <li>2. Configure provider/model/API key with <code class="font-mono">gemit init</code>.</li>
             </ol>
-            <pre class="mt-4 overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>gemit init
+            <pre class="mt-4 w-full max-w-full overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>gemit init
 gemit doctor</code></pre>
           </article>
         </section>
@@ -320,7 +310,7 @@ ANTHROPIC_API_KEY=""</code></pre>
     </div>
     <script>
       (function syncNpmMetadata() {
-        var packageName = "@ericknovaes56/gemit-cli";
+        var packageName = "gemit-cli";
         var endpoint = "https://registry.npmjs.org/" + encodeURIComponent(packageName);
         var versionEl = document.getElementById("npm-version");
         var updatedEl = document.getElementById("npm-updated");
