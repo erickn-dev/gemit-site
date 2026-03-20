@@ -232,7 +232,10 @@ gemit doctor</code></pre>
 
             <article class="rounded-lg border border-border bg-background p-4">
               <p class="font-mono text-sm">gemit changelog [name]</p>
-              <p class="mt-1 text-sm text-muted-foreground">Generates a file in <code class="font-mono">changelogs/&lt;name&gt;-YYYY-MM-DD.md</code>.</p>
+              <p class="mt-1 text-sm text-muted-foreground">Generates a file in <code class="font-mono">changelogs/&lt;name&gt;-YYYY-MM-DD.md</code> using recent commit history.</p>
+              <div class="mt-3 space-y-2 text-sm text-muted-foreground">
+                <p>- <code class="font-mono">-c, --commits &lt;number&gt;</code>: number of recent commits to include (default: 20, max: 200).</p>
+              </div>
             </article>
 
             <article class="rounded-lg border border-border bg-background p-4">
@@ -248,9 +251,9 @@ gemit doctor</code></pre>
 
           <article class="mt-3 rounded-lg border border-border bg-background p-4">
             <p class="font-mono text-sm">gemit add [--all] [--check]</p>
-            <p class="mt-1 text-sm text-muted-foreground">Stages changes and enters the same commit suggestion flow.</p>
+            <p class="mt-1 text-sm text-muted-foreground">Stages changes and enters the same commit suggestion flow. In practice, this flow requires <code class="font-mono">--all</code>.</p>
             <div class="mt-3 space-y-2 text-sm text-muted-foreground">
-              <p>- <code class="font-mono">--all</code>: runs <code class="font-mono">git add .</code>.</p>
+              <p>- <code class="font-mono">--all</code>: required; runs <code class="font-mono">git add .</code>.</p>
               <p>- <code class="font-mono">--check</code>: runs lint and test with <code class="font-mono">--if-present</code>.</p>
             </div>
           </article>
