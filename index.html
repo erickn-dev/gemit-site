@@ -180,6 +180,46 @@ gemit doctor</code></pre>
           </div>
         </section>
 
+        <section class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
+          <h2 class="text-xl font-semibold">Prompt customization</h2>
+          <p class="mt-2 text-sm text-muted-foreground">gemit works out of the box with built-in prompts. If you want to adjust the AI instructions for any command, you can override them globally — files are stored in your OS config directory, never inside your projects.</p>
+
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-lg border border-border bg-background p-4">
+              <p class="font-medium">How it works</p>
+              <ol class="mt-2 space-y-2 text-sm text-muted-foreground">
+                <li>1. No setup needed — built-in defaults are always active.</li>
+                <li>2. Run <code class="font-mono">gemit prompts --edit commit</code> to customize a prompt.</li>
+                <li>3. gemit detects the file and uses it instead of the built-in.</li>
+                <li>4. Delete the file to revert to the default.</li>
+              </ol>
+            </div>
+            <div class="rounded-lg border border-border bg-background p-4">
+              <p class="font-medium">Global config location</p>
+              <ul class="mt-2 space-y-2 text-sm text-muted-foreground">
+                <li>Windows: <code class="font-mono">%APPDATA%\gemit\prompts\</code></li>
+                <li>macOS: <code class="font-mono">~/Library/Application Support/gemit/prompts/</code></li>
+                <li>Linux: <code class="font-mono">~/.config/gemit/prompts/</code></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-4 rounded-lg border border-border bg-background p-4">
+            <p class="font-medium">Available template variables</p>
+            <div class="mt-3 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2 lg:grid-cols-3">
+              <div><code class="font-mono">commit.txt</code><p class="mt-1 text-xs">{{detected_type}}, {{staged_files}}, {{summary}}, {{diff_stat}}, {{patch}}</p></div>
+              <div><code class="font-mono">branch.txt</code><p class="mt-1 text-xs">{{description}}</p></div>
+              <div><code class="font-mono">pr.txt</code><p class="mt-1 text-xs">{{branch_data}}</p></div>
+              <div><code class="font-mono">changelog.txt</code><p class="mt-1 text-xs">{{commit_limit}}, {{commit_history}}</p></div>
+              <div><code class="font-mono">log.txt</code><p class="mt-1 text-xs">{{branch_context}}</p></div>
+            </div>
+          </div>
+
+          <pre class="mt-4 w-full max-w-full overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>gemit prompts              # list status of all prompts
+gemit prompts --init       # export all defaults to global config folder
+gemit prompts --edit commit  # open commit prompt in default editor</code></pre>
+        </section>
+
         <section id="commands" class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
           <h2 class="text-xl font-semibold">CLI commands</h2>
 
@@ -251,6 +291,16 @@ gemit doctor</code></pre>
             <article class="rounded-lg border border-border bg-background p-4">
               <p class="font-mono text-sm">gemit update</p>
               <p class="mt-1 text-sm text-muted-foreground">Forces an update check and installs the latest global version when available.</p>
+            </article>
+
+            <article class="rounded-lg border border-border bg-background p-4">
+              <p class="font-mono text-sm">gemit prompts</p>
+              <p class="mt-1 text-sm text-muted-foreground">Manages AI prompt templates. Works out of the box with built-in defaults — customize only if needed, without touching your project.</p>
+              <div class="mt-3 space-y-2 text-sm text-muted-foreground">
+                <p>- <code class="font-mono">--init</code>: exports all defaults to the global config folder and opens it.</p>
+                <p>- <code class="font-mono">--edit &lt;name&gt;</code>: opens a specific prompt in your default editor.</p>
+                <p>- <code class="font-mono">--show &lt;name&gt;</code>: prints the built-in template in the terminal.</p>
+              </div>
             </article>
           </div>
 
