@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -55,9 +55,6 @@
               accent: "hsl(240 3.7% 15.9%)",
               "accent-foreground": "hsl(0 0% 98%)",
             },
-            boxShadow: {
-              soft: "0 1px 2px rgba(0,0,0,.45)",
-            },
           },
         },
       };
@@ -82,28 +79,207 @@
         }
       }
     </script>
+    <style>
+      /* Dot grid background */
+      body {
+        background-color: hsl(240 10% 3.9%);
+        background-image: radial-gradient(hsl(240 3.7% 18%) 1px, transparent 1px);
+        background-size: 28px 28px;
+      }
+
+      /* Gradient text utility */
+      .gradient-text {
+        background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Hero card glow border */
+      .hero-card {
+        position: relative;
+        background: hsl(240 10% 3.9%);
+      }
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 13px;
+        background: linear-gradient(135deg, hsl(240 3.7% 25%), hsl(240 3.7% 15.9%) 50%, hsl(240 3.7% 22%));
+        z-index: -1;
+      }
+
+      /* Card hover glow */
+      .cmd-card {
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+        border-color: hsl(240 3.7% 15.9%);
+      }
+      .cmd-card:hover {
+        border-color: hsl(240 3.7% 30%);
+        box-shadow: 0 0 0 1px hsl(240 3.7% 22%), 0 4px 20px rgba(0,0,0,0.5);
+        transform: translateY(-1px);
+      }
+
+      /* Primary button glow */
+      .btn-primary {
+        box-shadow: 0 0 0 0 rgba(255,255,255,0);
+        transition: opacity 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+      }
+      .btn-primary:hover {
+        opacity: 0.92;
+        box-shadow: 0 0 16px rgba(255,255,255,0.1), 0 2px 8px rgba(0,0,0,0.4);
+        transform: translateY(-1px);
+      }
+
+      /* Secondary button */
+      .btn-secondary {
+        transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+      }
+      .btn-secondary:hover {
+        border-color: hsl(240 3.7% 30%);
+        background: hsl(240 3.7% 10%);
+        transform: translateY(-1px);
+      }
+
+      /* Discord button */
+      .btn-discord {
+        background: #5865F2;
+        color: #fff;
+        transition: opacity 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+      }
+      .btn-discord:hover {
+        opacity: 0.9;
+        box-shadow: 0 0 18px rgba(88,101,242,0.35);
+        transform: translateY(-1px);
+      }
+
+      /* Terminal code block */
+      .terminal-block {
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid hsl(240 3.7% 15.9%);
+      }
+      .terminal-header {
+        background: hsl(240 3.7% 10%);
+        border-bottom: 1px solid hsl(240 3.7% 14%);
+        padding: 8px 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .terminal-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: hsl(240 3.7% 22%);
+      }
+      .terminal-body {
+        background: hsl(240 10% 5%);
+        padding: 16px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.875rem;
+        overflow-x: auto;
+        color: hsl(0 0% 88%);
+        line-height: 1.7;
+      }
+
+      /* Pulsing dot for npm version */
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+      .pulse-dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #22c55e;
+        animation: pulse-dot 2s ease-in-out infinite;
+        vertical-align: middle;
+        margin-right: 5px;
+        margin-bottom: 1px;
+      }
+
+      /* Section accent label */
+      .section-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: hsl(240 5% 55%);
+        margin-bottom: 12px;
+      }
+      .section-label::before {
+        content: "";
+        width: 14px;
+        height: 1px;
+        background: hsl(240 3.7% 35%);
+        flex-shrink: 0;
+      }
+
+      /* Sticky header blur */
+      .site-header {
+        position: sticky;
+        top: 12px;
+        z-index: 50;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background: hsla(240, 10%, 3.9%, 0.85) !important;
+      }
+
+      /* Smooth scrolling */
+      html { scroll-behavior: smooth; }
+
+      /* Code inline */
+      code {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.82em;
+        background: hsl(240 3.7% 13%);
+        border: 1px solid hsl(240 3.7% 18%);
+        border-radius: 4px;
+        padding: 1px 5px;
+        color: hsl(0 0% 90%);
+      }
+
+      /* Fade-in animation */
+      @keyframes fade-up {
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .fade-up {
+        animation: fade-up 0.5s ease both;
+      }
+      .fade-up-delay-1 { animation-delay: 0.08s; }
+      .fade-up-delay-2 { animation-delay: 0.16s; }
+      .fade-up-delay-3 { animation-delay: 0.24s; }
+    </style>
   </head>
-  <body class="bg-background text-foreground font-sans antialiased">
+  <body class="text-foreground font-sans antialiased">
     <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-      <header class="mb-8 rounded-xl border border-border bg-card shadow-soft">
+
+      <!-- Header -->
+      <header class="site-header mb-8 rounded-xl border border-border bg-card" style="box-shadow: 0 1px 2px rgba(0,0,0,.6);">
         <div class="flex items-center justify-between px-5 py-4">
           <div class="flex items-center gap-3">
             <img src="./logo.png" alt="gemit logo" class="h-9 w-9 rounded-md border border-border object-cover" />
             <div>
-              <p class="text-sm font-semibold">gemit</p>
+              <p class="text-sm font-semibold tracking-tight">gemit</p>
               <p class="text-xs text-muted-foreground">AI CLI for Git</p>
             </div>
           </div>
           <div class="flex items-center gap-2">
             <a
               href="./dashboard/"
-              class="inline-flex items-center rounded-md border border-border bg-background px-4 py-2 text-sm font-medium transition hover:opacity-90"
+              class="btn-secondary inline-flex items-center rounded-md border border-border bg-background px-4 py-2 text-sm font-medium"
             >
               NPM Dashboard
             </a>
             <a
               href="#installation"
-              class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90"
+              class="btn-primary inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
             >
               Get Started
             </a>
@@ -111,249 +287,312 @@
         </div>
       </header>
 
-      <main class="space-y-6">
-        <section class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
-          <span class="inline-flex rounded-md border border-border bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
-            Node.js CLI
+      <main class="space-y-5">
+
+        <!-- Hero -->
+        <section class="hero-card fade-up rounded-xl p-6 sm:p-10" style="border: 1px solid hsl(240 3.7% 18%);">
+          <span class="inline-flex items-center rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground tracking-wide">
+            Node.js CLI &nbsp;·&nbsp; npm install -g gemit-cli
           </span>
-          <h1 class="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-            gemit is a CLI to speed up your Git workflow with AI
+          <h1 class="gradient-text mt-5 text-3xl font-bold tracking-tight sm:text-5xl leading-tight">
+            AI-powered Git workflow,<br class="hidden sm:block" /> from your terminal.
           </h1>
-          <p class="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
-            It suggests commits, branch names, PR text, branch summaries, and changelogs with confirmation before running Git commands.
+          <p class="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
+            gemit suggests commits, branch names, PR text, branch summaries, and changelogs — with confirmation before running any Git command.
           </p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="#installation" class="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Install</a>
-            <a href="#commands" class="rounded-md border border-border bg-background px-4 py-2 text-sm font-medium">View Commands</a>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="#installation" class="btn-primary rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground">Install now</a>
+            <a href="#commands" class="btn-secondary rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium">View Commands</a>
           </div>
         </section>
 
-        <section class="grid gap-6 lg:grid-cols-2">
-          <article id="installation" class="min-w-0 rounded-xl border border-border bg-card p-6 shadow-soft">
-            <h2 class="text-lg font-semibold">Installation</h2>
-            <p class="mt-2 text-sm text-muted-foreground">Global npm install on Windows, Linux, and macOS.</p>
-            <p class="mt-1 text-xs text-muted-foreground">
-              npm sync: v<span id="npm-version">...</span> • updated <span id="npm-updated">...</span>
+        <!-- Installation + Prerequisites -->
+        <section class="grid gap-5 lg:grid-cols-2 fade-up fade-up-delay-1">
+
+          <article id="installation" class="cmd-card min-w-0 rounded-xl border bg-card p-6">
+            <div class="section-label">Installation</div>
+            <h2 class="text-base font-semibold">Global npm install</h2>
+            <p class="mt-1 text-sm text-muted-foreground">Works on Windows, Linux, and macOS.</p>
+            <p class="mt-2 text-xs text-muted-foreground flex items-center">
+              <span class="pulse-dot"></span>
+              npm sync: v<span id="npm-version">...</span>&nbsp;·&nbsp;updated <span id="npm-updated">...</span>
             </p>
-            <pre class="mt-4 w-full max-w-full overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>npm install -g gemit-cli</code></pre>
+            <div class="terminal-block mt-4">
+              <div class="terminal-header">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+              </div>
+              <div class="terminal-body">npm install -g gemit-cli</div>
+            </div>
           </article>
 
-          <article class="min-w-0 rounded-xl border border-border bg-card p-6 shadow-soft">
-            <h2 class="text-lg font-semibold">Prerequisites</h2>
-            <ol class="mt-2 space-y-2 text-sm text-muted-foreground">
+          <article class="cmd-card min-w-0 rounded-xl border bg-card p-6">
+            <div class="section-label">Prerequisites</div>
+            <h2 class="text-base font-semibold">Getting started</h2>
+            <ol class="mt-3 space-y-2 text-sm text-muted-foreground">
               <li>1. Be inside a Git repository.</li>
-              <li>2. Configure provider/model/API key with <code class="font-mono">gemit init</code>.</li>
+              <li>2. Configure provider/model/API key with <code>gemit init</code>.</li>
             </ol>
-            <pre class="mt-4 w-full max-w-full overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>gemit init
-gemit doctor</code></pre>
+            <div class="terminal-block mt-4">
+              <div class="terminal-header">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+              </div>
+              <div class="terminal-body">gemit init<br>gemit doctor</div>
+            </div>
           </article>
         </section>
 
-        <section class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
-          <h2 class="text-xl font-semibold">Configuration (init) and variables</h2>
-          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+        <!-- Configuration -->
+        <section class="cmd-card rounded-xl border bg-card p-6 sm:p-8 fade-up fade-up-delay-2">
+          <div class="section-label">Setup</div>
+          <h2 class="text-lg font-semibold">Configuration (init) and variables</h2>
+          <div class="mt-5 grid gap-4 sm:grid-cols-2">
             <div class="rounded-lg border border-border bg-background p-4">
-              <p class="font-medium">Load order</p>
+              <p class="text-sm font-medium">Load order</p>
               <ol class="mt-2 space-y-2 text-sm text-muted-foreground">
-                <li>1. <code class="font-mono">.env</code> global.</li>
+                <li>1. <code>.env</code> global.</li>
               </ol>
-              <p class="mt-3 text-sm text-muted-foreground">Global path on Windows: <code class="font-mono">%APPDATA%\gemit\.env</code></p>
+              <p class="mt-3 text-sm text-muted-foreground">Global path on Windows: <code>%APPDATA%\gemit\.env</code></p>
             </div>
             <div class="rounded-lg border border-border bg-background p-4">
-              <p class="font-medium">Supported variables</p>
+              <p class="text-sm font-medium">Supported variables</p>
               <ul class="mt-2 space-y-2 text-sm text-muted-foreground">
-                <li>- <code class="font-mono">LLM_PROVIDER</code> (google, openai, anthropic)</li>
-                <li>- <code class="font-mono">LLM_MODEL</code></li>
-                <li>- <code class="font-mono">GOOGLE_API_KEY</code> (or <code class="font-mono">GEMINI_API_KEY</code>)</li>
-                <li>- <code class="font-mono">OPENAI_API_KEY</code></li>
-                <li>- <code class="font-mono">ANTHROPIC_API_KEY</code></li>
+                <li><code>LLM_PROVIDER</code> &mdash; google, openai, anthropic</li>
+                <li><code>LLM_MODEL</code></li>
+                <li><code>GOOGLE_API_KEY</code> (or <code>GEMINI_API_KEY</code>)</li>
+                <li><code>OPENAI_API_KEY</code></li>
+                <li><code>ANTHROPIC_API_KEY</code></li>
               </ul>
             </div>
           </div>
           <div class="mt-4 rounded-lg border border-border bg-background p-4">
-            <p class="font-medium">init defaults</p>
+            <p class="text-sm font-medium">init defaults</p>
             <ul class="mt-2 space-y-2 text-sm text-muted-foreground sm:grid sm:grid-cols-3 sm:gap-3 sm:space-y-0">
-              <li>- <code class="font-mono">google</code> -> <code class="font-mono">gemini-2.5-flash</code></li>
-              <li>- <code class="font-mono">openai</code> -> <code class="font-mono">gpt-4o-mini</code></li>
-              <li>- <code class="font-mono">anthropic</code> -> <code class="font-mono">claude-3-5-sonnet-latest</code></li>
+              <li><code>google</code> &rarr; <code>gemini-2.5-flash</code></li>
+              <li><code>openai</code> &rarr; <code>gpt-4o-mini</code></li>
+              <li><code>anthropic</code> &rarr; <code>claude-3-5-sonnet-latest</code></li>
             </ul>
           </div>
         </section>
 
-        <section class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
-          <h2 class="text-xl font-semibold">Prompt customization</h2>
+        <!-- Prompt customization -->
+        <section class="cmd-card rounded-xl border bg-card p-6 sm:p-8 fade-up fade-up-delay-2">
+          <div class="section-label">Customization</div>
+          <h2 class="text-lg font-semibold">Prompt customization</h2>
           <p class="mt-2 text-sm text-muted-foreground">gemit works out of the box with built-in prompts. If you want to adjust the AI instructions for any command, you can override them globally — files are stored in your OS config directory, never inside your projects.</p>
 
-          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          <div class="mt-5 grid gap-4 sm:grid-cols-2">
             <div class="rounded-lg border border-border bg-background p-4">
-              <p class="font-medium">How it works</p>
+              <p class="text-sm font-medium">How it works</p>
               <ol class="mt-2 space-y-2 text-sm text-muted-foreground">
                 <li>1. No setup needed — built-in defaults are always active.</li>
-                <li>2. Run <code class="font-mono">gemit prompts --edit commit</code> to customize a prompt.</li>
+                <li>2. Run <code>gemit prompts --edit commit</code> to customize.</li>
                 <li>3. gemit detects the file and uses it instead of the built-in.</li>
                 <li>4. Delete the file to revert to the default.</li>
               </ol>
             </div>
             <div class="rounded-lg border border-border bg-background p-4">
-              <p class="font-medium">Global config location</p>
+              <p class="text-sm font-medium">Global config location</p>
               <ul class="mt-2 space-y-2 text-sm text-muted-foreground">
-                <li>Windows: <code class="font-mono">%APPDATA%\gemit\prompts\</code></li>
-                <li>macOS: <code class="font-mono">~/Library/Application Support/gemit/prompts/</code></li>
-                <li>Linux: <code class="font-mono">~/.config/gemit/prompts/</code></li>
+                <li>Windows: <code>%APPDATA%\gemit\prompts\</code></li>
+                <li>macOS: <code>~/Library/Application Support/gemit/prompts/</code></li>
+                <li>Linux: <code>~/.config/gemit/prompts/</code></li>
               </ul>
             </div>
           </div>
 
           <div class="mt-4 rounded-lg border border-border bg-background p-4">
-            <p class="font-medium">Available template variables</p>
-            <div class="mt-3 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2 lg:grid-cols-3">
-              <div><code class="font-mono">commit.txt</code><p class="mt-1 text-xs">{{detected_type}}, {{staged_files}}, {{summary}}, {{diff_stat}}, {{patch}}</p></div>
-              <div><code class="font-mono">branch.txt</code><p class="mt-1 text-xs">{{description}}</p></div>
-              <div><code class="font-mono">pr.txt</code><p class="mt-1 text-xs">{{branch_data}}</p></div>
-              <div><code class="font-mono">changelog.txt</code><p class="mt-1 text-xs">{{commit_limit}}, {{commit_history}}</p></div>
-              <div><code class="font-mono">log.txt</code><p class="mt-1 text-xs">{{branch_context}}</p></div>
+            <p class="text-sm font-medium">Available template variables</p>
+            <div class="mt-3 grid gap-3 text-sm text-muted-foreground sm:grid-cols-2 lg:grid-cols-3">
+              <div class="rounded-md border border-border bg-muted/40 p-3">
+                <code>commit.txt</code>
+                <p class="mt-1 text-xs leading-relaxed">{{detected_type}}, {{staged_files}}, {{summary}}, {{diff_stat}}, {{patch}}</p>
+              </div>
+              <div class="rounded-md border border-border bg-muted/40 p-3">
+                <code>branch.txt</code>
+                <p class="mt-1 text-xs">{{description}}</p>
+              </div>
+              <div class="rounded-md border border-border bg-muted/40 p-3">
+                <code>pr.txt</code>
+                <p class="mt-1 text-xs">{{branch_data}}</p>
+              </div>
+              <div class="rounded-md border border-border bg-muted/40 p-3">
+                <code>changelog.txt</code>
+                <p class="mt-1 text-xs">{{commit_limit}}, {{commit_history}}</p>
+              </div>
+              <div class="rounded-md border border-border bg-muted/40 p-3">
+                <code>log.txt</code>
+                <p class="mt-1 text-xs">{{branch_context}}</p>
+              </div>
             </div>
           </div>
 
-          <pre class="mt-4 w-full max-w-full overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-sm"><code>gemit prompts              # list status of all prompts
+          <div class="terminal-block mt-5">
+            <div class="terminal-header">
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+              <span class="ml-2 text-xs text-muted-foreground" style="font-family: 'JetBrains Mono', monospace;">gemit prompts</span>
+            </div>
+            <div class="terminal-body">gemit prompts              # list status of all prompts
 gemit prompts --init       # export all defaults to global config folder
-gemit prompts --edit commit  # open commit prompt in default editor</code></pre>
+gemit prompts --edit commit  # open commit prompt in default editor</div>
+          </div>
         </section>
 
-        <section id="commands" class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
-          <h2 class="text-xl font-semibold">CLI commands</h2>
+        <!-- CLI Commands -->
+        <section id="commands" class="rounded-xl border border-border bg-card p-6 sm:p-8 fade-up fade-up-delay-3">
+          <div class="section-label">Reference</div>
+          <h2 class="text-lg font-semibold">CLI commands</h2>
 
-          <h3 class="mt-5 text-sm font-semibold uppercase tracking-wider text-muted-foreground">Global options</h3>
-          <div class="mt-3 grid gap-3 sm:grid-cols-3">
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">-v, --version</p>
-              <p class="mt-1 text-sm text-muted-foreground">Show version.</p>
+          <h3 class="section-label mt-6">Global options</h3>
+          <div class="mt-2 grid gap-3 sm:grid-cols-3">
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">-v, --version</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Show version.</p>
             </article>
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">-h, --help</p>
-              <p class="mt-1 text-sm text-muted-foreground">General help.</p>
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">-h, --help</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">General help.</p>
             </article>
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">help [command]</p>
-              <p class="mt-1 text-sm text-muted-foreground">Help for a specific command.</p>
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">help [command]</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Help for a specific command.</p>
             </article>
           </div>
 
-          <h3 class="mt-6 text-sm font-semibold uppercase tracking-wider text-muted-foreground">Main flows</h3>
-          <div class="mt-3 grid gap-3 sm:grid-cols-2">
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit</p>
-              <p class="mt-1 text-sm text-muted-foreground">Shortcut to the commit flow using current staged changes.</p>
+          <h3 class="section-label mt-7">Main flows</h3>
+          <div class="mt-2 grid gap-3 sm:grid-cols-2">
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">gemit</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Shortcut to the commit flow using current staged changes.</p>
             </article>
 
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit commit [--all] [--check]</p>
-              <p class="mt-1 text-sm text-muted-foreground">Flow: stage -> summary -> AI suggestion -> optional edit -> confirmation -> <code class="font-mono">git commit -m</code>. Then it asks whether to push.</p>
-              <div class="mt-3 space-y-2 text-sm text-muted-foreground">
-                <p>- <code class="font-mono">--all</code>: runs <code class="font-mono">git add .</code> first.</p>
-                <p>- <code class="font-mono">--check</code>: runs <code class="font-mono">npm run lint --if-present</code> and <code class="font-mono">npm run test --if-present</code>.</p>
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">gemit commit [--all] [--check]</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Flow: stage &rarr; summary &rarr; AI suggestion &rarr; optional edit &rarr; confirmation &rarr; <code>git commit -m</code>. Then asks whether to push.</p>
+              <div class="mt-3 space-y-1.5 text-sm text-muted-foreground">
+                <p><code>--all</code> runs <code>git add .</code> first.</p>
+                <p><code>--check</code> runs <code>npm run lint --if-present</code> and <code>npm run test --if-present</code>.</p>
               </div>
             </article>
 
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit branch &lt;description...&gt;</p>
-              <p class="mt-1 text-sm text-muted-foreground">Generates a branch in <code class="font-mono">&lt;type&gt;/&lt;kebab-case&gt;</code> (feat, fix, chore, docs, refactor, test) and asks whether to create it with <code class="font-mono">git checkout -b</code>.</p>
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">gemit branch &lt;description...&gt;</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Generates a branch in <code>&lt;type&gt;/&lt;kebab-case&gt;</code> (feat, fix, chore, docs, refactor, test) and asks whether to create it with <code>git checkout -b</code>.</p>
             </article>
 
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit pr</p>
-              <p class="mt-1 text-sm text-muted-foreground">Generates a markdown PR title and description from branch commits.</p>
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">gemit pr</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Generates a markdown PR title and description from branch commits.</p>
             </article>
 
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit log</p>
-              <p class="mt-1 text-sm text-muted-foreground">Summarizes what was done in the current branch.</p>
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">gemit log</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Summarizes what was done in the current branch.</p>
             </article>
 
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit changelog [name]</p>
-              <p class="mt-1 text-sm text-muted-foreground">Generates a file in <code class="font-mono">changelogs/&lt;name&gt;-YYYY-MM-DD.md</code> using recent commit history.</p>
-              <div class="mt-3 space-y-2 text-sm text-muted-foreground">
-                <p>- <code class="font-mono">-c, --commits &lt;number&gt;</code>: number of recent commits to include (default: 20, max: 200).</p>
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">gemit changelog [name]</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Generates a file in <code>changelogs/&lt;name&gt;-YYYY-MM-DD.md</code> using recent commit history.</p>
+              <div class="mt-3 text-sm text-muted-foreground">
+                <p><code>-c, --commits &lt;number&gt;</code> — recent commits to include (default: 20, max: 200).</p>
               </div>
             </article>
 
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit init</p>
-              <p class="mt-1 text-sm text-muted-foreground">Configures provider/model/key in the global .env.</p>
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">gemit init</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Configures provider/model/key in the global .env.</p>
             </article>
 
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit doctor</p>
-              <p class="mt-1 text-sm text-muted-foreground">Validates current config and reports missing values.</p>
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">gemit doctor</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Validates current config and reports missing values.</p>
             </article>
 
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit update</p>
-              <p class="mt-1 text-sm text-muted-foreground">Forces an update check and installs the latest global version when available.</p>
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">gemit update</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Forces an update check and installs the latest global version when available.</p>
             </article>
 
-            <article class="rounded-lg border border-border bg-background p-4">
-              <p class="font-mono text-sm">gemit prompts</p>
-              <p class="mt-1 text-sm text-muted-foreground">Manages AI prompt templates. Works out of the box with built-in defaults — customize only if needed, without touching your project.</p>
-              <div class="mt-3 space-y-2 text-sm text-muted-foreground">
-                <p>- <code class="font-mono">--init</code>: exports all defaults to the global config folder and opens it.</p>
-                <p>- <code class="font-mono">--edit &lt;name&gt;</code>: opens a specific prompt in your default editor.</p>
-                <p>- <code class="font-mono">--show &lt;name&gt;</code>: prints the built-in template in the terminal.</p>
+            <article class="cmd-card rounded-lg border bg-background p-4">
+              <p class="font-mono text-sm text-foreground">gemit prompts</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Manages AI prompt templates. Works out of the box with built-in defaults — customize only if needed, without touching your project.</p>
+              <div class="mt-3 space-y-1.5 text-sm text-muted-foreground">
+                <p><code>--init</code> exports all defaults to the global config folder and opens it.</p>
+                <p><code>--edit &lt;name&gt;</code> opens a specific prompt in your default editor.</p>
+                <p><code>--show &lt;name&gt;</code> prints the built-in template in the terminal.</p>
               </div>
             </article>
           </div>
 
-          <article class="mt-3 rounded-lg border border-border bg-background p-4">
-            <p class="font-mono text-sm">gemit add [--all] [--check]</p>
-            <p class="mt-1 text-sm text-muted-foreground">Stages changes and enters the same commit suggestion flow. In practice, this flow requires <code class="font-mono">--all</code>.</p>
-            <div class="mt-3 space-y-2 text-sm text-muted-foreground">
-              <p>- <code class="font-mono">--all</code>: required; runs <code class="font-mono">git add .</code>.</p>
-              <p>- <code class="font-mono">--check</code>: runs lint and test with <code class="font-mono">--if-present</code>.</p>
+          <article class="cmd-card mt-3 rounded-lg border bg-background p-4">
+            <p class="font-mono text-sm text-foreground">gemit add [--all] [--check]</p>
+            <p class="mt-1.5 text-sm text-muted-foreground">Stages changes and enters the same commit suggestion flow. In practice, this flow requires <code>--all</code>.</p>
+            <div class="mt-3 space-y-1.5 text-sm text-muted-foreground">
+              <p><code>--all</code> required; runs <code>git add .</code>.</p>
+              <p><code>--check</code> runs lint and test with <code>--if-present</code>.</p>
             </div>
           </article>
         </section>
 
-        <section class="grid gap-6 lg:grid-cols-2">
-          <article class="rounded-xl border border-border bg-card p-6 shadow-soft">
-            <h3 class="text-lg font-semibold">.env example</h3>
-            <pre class="mt-4 overflow-x-auto rounded-md border border-border bg-muted p-4 font-mono text-xs"><code>LLM_PROVIDER="google"
+        <!-- .env + package.json -->
+        <section class="grid gap-5 lg:grid-cols-2">
+          <article class="cmd-card rounded-xl border bg-card p-6">
+            <div class="section-label">Example</div>
+            <h3 class="text-base font-semibold">.env file</h3>
+            <div class="terminal-block mt-4">
+              <div class="terminal-header">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="ml-2 text-xs text-muted-foreground" style="font-family: 'JetBrains Mono', monospace;">.env</span>
+              </div>
+              <div class="terminal-body">LLM_PROVIDER="google"
 LLM_MODEL="gemini-2.5-flash"
 
 GOOGLE_API_KEY=""
 GEMINI_API_KEY=""
 OPENAI_API_KEY=""
-ANTHROPIC_API_KEY=""</code></pre>
+ANTHROPIC_API_KEY=""</div>
+            </div>
           </article>
 
-          <article class="rounded-xl border border-border bg-card p-6 shadow-soft">
-            <h3 class="text-lg font-semibold">Project scripts (package.json)</h3>
+          <article class="cmd-card rounded-xl border bg-card p-6">
+            <div class="section-label">Integration</div>
+            <h3 class="text-base font-semibold">Project scripts (package.json)</h3>
             <ol class="mt-3 space-y-2 text-sm text-muted-foreground">
-              <li>1. <code class="font-mono">gemit commit --check</code> runs <code class="font-mono">npm run lint --if-present</code>.</li>
-              <li>2. <code class="font-mono">gemit commit --check</code> runs <code class="font-mono">npm run test --if-present</code>.</li>
-              <li>3. If scripts do not exist, npm skips them safely because of <code class="font-mono">--if-present</code>.</li>
+              <li>1. <code>gemit commit --check</code> runs <code>npm run lint --if-present</code>.</li>
+              <li>2. <code>gemit commit --check</code> runs <code>npm run test --if-present</code>.</li>
+              <li>3. If scripts do not exist, npm skips them safely because of <code>--if-present</code>.</li>
             </ol>
           </article>
         </section>
 
-        <section class="rounded-xl border border-border bg-card p-6 shadow-soft sm:p-8">
+        <!-- Community -->
+        <section class="cmd-card rounded-xl border bg-card p-6 sm:p-8" style="background: linear-gradient(135deg, hsl(240 10% 4.5%) 0%, hsl(240 10% 3.9%) 100%);">
           <div class="grid items-center gap-6 md:grid-cols-[1fr_auto]">
             <div>
-              <h3 class="text-2xl font-semibold tracking-tight">Join the community</h3>
+              <div class="section-label">Community</div>
+              <h3 class="text-2xl font-bold tracking-tight gradient-text">Join the community</h3>
               <p class="mt-2 text-sm text-muted-foreground sm:text-base">
-                Join the Discord community to share improvements, ask questions, and follow gemit updates.
+                Share improvements, ask questions, and follow gemit updates on Discord.
               </p>
               <a
                 href="https://discord.gg/CJqy69MGD2"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="mt-5 inline-flex items-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition hover:opacity-90"
+                class="btn-discord mt-5 inline-flex items-center rounded-md px-5 py-2.5 text-sm font-semibold"
               >
+                <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.032.054a19.9 19.9 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
                 Join Discord
               </a>
             </div>
             <div class="justify-self-start md:justify-self-end">
-              <div class="rounded-xl border border-border bg-muted p-3">
+              <div class="rounded-xl border border-border p-3" style="background: hsl(240 3.7% 10%);">
                 <img
                   src="./community.png"
                   alt="Community logo"
@@ -365,15 +604,20 @@ ANTHROPIC_API_KEY=""</code></pre>
         </section>
       </main>
 
-      <footer class="mt-8 rounded-xl border border-border bg-card px-5 py-4 text-sm text-muted-foreground shadow-soft">
-        <p>gemit - AI-powered CLI for commits and branches</p>
-        <p class="mt-1">Credits: Erick Novaes56</p>
-        <p class="mt-1">
-          Instagram:
-          <a href="http://instagram.com/ericknovaes56" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-90">instagram.com/ericknovaes56</a>
-        </p>
+      <!-- Footer -->
+      <footer class="mt-6 rounded-xl border border-border bg-card px-5 py-5 text-sm text-muted-foreground" style="box-shadow: 0 1px 2px rgba(0,0,0,.6);">
+        <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p class="font-medium text-foreground">gemit</p>
+            <p class="mt-0.5 text-xs">AI-powered CLI for commits and branches &nbsp;&middot;&nbsp; by Erick Novaes56</p>
+          </div>
+          <div class="mt-2 sm:mt-0 text-xs">
+            <a href="http://instagram.com/ericknovaes56" target="_blank" rel="noopener noreferrer" class="hover:text-foreground transition-colors underline underline-offset-2">instagram.com/ericknovaes56</a>
+          </div>
+        </div>
       </footer>
     </div>
+
     <script>
       (function syncNpmMetadata() {
         var packageName = "gemit-cli";
@@ -383,9 +627,7 @@ ANTHROPIC_API_KEY=""</code></pre>
 
         fetch(endpoint)
           .then(function (response) {
-            if (!response.ok) {
-              throw new Error("npm registry request failed");
-            }
+            if (!response.ok) throw new Error("npm registry request failed");
             return response.json();
           })
           .then(function (data) {
@@ -394,10 +636,7 @@ ANTHROPIC_API_KEY=""</code></pre>
             var publishedAt = latest && data && data.time ? data.time[latest] : null;
             var lastUpdate = publishedAt || modifiedAt;
 
-            if (versionEl && latest) {
-              versionEl.textContent = latest;
-            }
-
+            if (versionEl && latest) versionEl.textContent = latest;
             if (updatedEl && lastUpdate) {
               var date = new Date(lastUpdate);
               if (!isNaN(date.getTime())) {
@@ -410,16 +649,10 @@ ANTHROPIC_API_KEY=""</code></pre>
             }
           })
           .catch(function () {
-            if (versionEl) {
-              versionEl.textContent = "unavailable";
-            }
-            if (updatedEl) {
-              updatedEl.textContent = "unavailable";
-            }
+            if (versionEl) versionEl.textContent = "unavailable";
+            if (updatedEl) updatedEl.textContent = "unavailable";
           });
       })();
     </script>
   </body>
 </html>
-
-
