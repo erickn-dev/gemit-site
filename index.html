@@ -325,8 +325,8 @@
               <p class="mt-1 text-xs text-muted-foreground">Stash with AI-generated message.</p>
             </div>
             <div class="rounded-lg border border-border bg-background p-3">
-              <p class="font-mono text-xs text-foreground">gemit release 1.2.0</p>
-              <p class="mt-1 text-xs text-muted-foreground">Full release: bump, changelog, tag.</p>
+              <p class="font-mono text-xs text-foreground">gemit release</p>
+              <p class="mt-1 text-xs text-muted-foreground">Interactive version picker (patch/minor/major/custom) — or pass version directly.</p>
             </div>
             <div class="rounded-lg border border-border bg-background p-3">
               <p class="font-mono text-xs text-foreground">gemit ignore "..."</p>
@@ -343,6 +343,10 @@
             <div class="rounded-lg border border-border bg-background p-3">
               <p class="font-mono text-xs text-foreground">commit --dry-run</p>
               <p class="mt-1 text-xs text-muted-foreground">Preview message without committing.</p>
+            </div>
+            <div class="rounded-lg border border-border bg-background p-3">
+              <p class="font-mono text-xs text-foreground">gemit pull</p>
+              <p class="mt-1 text-xs text-muted-foreground">Pull branch + AI summary of new routes, DTOs &amp; breaking changes.</p>
             </div>
           </div>
           <div class="mt-3 grid gap-3 sm:grid-cols-2">
@@ -612,8 +616,8 @@ gemit prompts --edit commit  # open commit prompt in default editor</div>
             </article>
 
             <article class="cmd-card rounded-lg border bg-background p-4">
-              <p class="font-mono text-sm text-foreground">gemit release &lt;version&gt;</p>
-              <p class="mt-1.5 text-sm text-muted-foreground">Full release flow in one command: updates <code>package.json</code>, generates a changelog with AI, commits as <code>chore(release): vX.Y.Z</code>, and creates an annotated git tag.</p>
+              <p class="font-mono text-sm text-foreground">gemit release [version]</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Full release flow in one command: updates project files (<code>package.json</code>, <code>Cargo.toml</code>, <code>pyproject.toml</code>, and more), generates a changelog with AI, commits as <code>chore(release): vX.Y.Z</code>, and creates an annotated git tag. If no version is passed, shows the current version and an interactive picker (patch / minor / major / custom) with arrow-key navigation.</p>
             </article>
 
             <article class="cmd-card rounded-lg border bg-background p-4">
@@ -633,6 +637,25 @@ gemit prompts --edit commit  # open commit prompt in default editor</div>
                 <p><code>--set LLM_MODEL=gpt-4o</code> — change the model.</p>
                 <p><code>--set GEMIT_LANGUAGE=pt-br</code> — switch AI output language.</p>
                 <p><code>--list</code> — shows all current config values (alias for <code>gemit doctor</code>).</p>
+              </div>
+            </article>
+
+            <article class="cmd-card rounded-lg border bg-background p-4 sm:col-span-2">
+              <p class="font-mono text-sm text-foreground">gemit pull</p>
+              <p class="mt-1.5 text-sm text-muted-foreground">Pulls the current branch from the configured remote, then uses AI to analyze exactly what changed. Detects new and modified backend routes, DTOs, request/response shapes, breaking changes, and config updates — so your whole team knows how to consume the update without reading the diff manually.</p>
+              <div class="mt-4 grid gap-3 sm:grid-cols-3 text-sm text-muted-foreground">
+                <div class="rounded-md border border-border bg-muted/40 p-3">
+                  <p class="font-medium text-foreground text-xs mb-1">New / Changed Endpoints</p>
+                  <p class="text-xs">HTTP method, path, required headers, request body shape, and response structure for every new or changed route.</p>
+                </div>
+                <div class="rounded-md border border-border bg-muted/40 p-3">
+                  <p class="font-medium text-foreground text-xs mb-1">Breaking Changes</p>
+                  <p class="text-xs">Renamed fields, removed routes, changed required params, and DB migrations flagged automatically.</p>
+                </div>
+                <div class="rounded-md border border-border bg-muted/40 p-3">
+                  <p class="font-medium text-foreground text-xs mb-1">Framework-Aware</p>
+                  <p class="text-xs">Understands Express, NestJS, FastAPI, Flask, Spring Boot, Laravel, Rails, Hono, Elysia, Fastify, and more.</p>
+                </div>
               </div>
             </article>
 
